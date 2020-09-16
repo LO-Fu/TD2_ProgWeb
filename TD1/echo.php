@@ -2,22 +2,35 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title> My first PHP </title>
+        <title> List of cars </title>
     </head>
    
     <body>
-        Here is the output of the PHP script : 
+      <ul>
         <?php
-          // This is a one line PHP comment
-          /* This other way to write comments can 
-          go on many lines */
-           
-          // Let's assign the string "hello" to the variable 'texte'
-          // Variable names start with $ in PHP
-          $texte = "hello world !";
-
-          // Let's write the value of variable '$texte'
-          echo $texte;
+        /*$car = array(
+          'marque' => 'Renault',
+          'couleur' => 'blue',
+          'immatriculation' => '256AB34');
+        echo "Car $car[immatriculation] of make $car[marque] (color $car[couleur])";*/
+        $car1 = array(
+          'marque' => 'Renault',
+          'couleur' => 'blue',
+          'immatriculation' => '256AB34');
+        $car2 = array(
+          'marque' => 'Peugeot',
+          'couleur' => 'white',
+          'immatriculation' => 'AQ184A4');
+        $cars = array(
+          'car1' => $car1,
+          'car2' => $car2);
+        if (empty($cars)){
+          echo "There is no car.";
+        }
+        foreach ($cars as $key => $value) {
+          echo "Car $value[immatriculation] of make $value[marque] (color $value[couleur])\n";
+        }
         ?>
+      </ul>
     </body>
 </html> 
