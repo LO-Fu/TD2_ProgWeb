@@ -1,10 +1,11 @@
 <?php
 
 require_once 'Model.php';
+require_once 'Voiture.php';
 
 $rep = Model::$pdo->query('SELECT * FROM Voiture');
-	$tab_obj = $rep->fetchAll(PDO::FETCH_OBJ);
-foreach ($tab_obj as $voit) {
-	echo "<p> Voiture immatriculée $voit->immatriculation de marque $voit->marque (couleur $voit->couleur) </p>"; }
+$tab_voit = Voiture::getAllVoitures();
+foreach ($tab_voit as $voit) {
+    $voit->afficher();
 
 ?>
