@@ -6,7 +6,6 @@
     </head>
    
     <body>
-      <ul>
         <?php
           class Voiture {
    
@@ -40,6 +39,9 @@
               if (strlen($immatriculation2==8)){
                 $this->immatriculation = $immatriculation2;
               }
+              else{
+              	return "Please, put a correct license";
+              }
             }
 
 
@@ -54,9 +56,9 @@
             // a display method
             public function afficher() {
               // À compléter dans le prochain exercice
+            	return "$this->marque, $this->couleur, $this->immatriculation";
             }
           }
         ?>
-      </ul>
     </body>
 </html> 

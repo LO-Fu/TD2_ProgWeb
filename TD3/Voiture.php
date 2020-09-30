@@ -59,4 +59,42 @@ class Voiture
     {
         echo "<p> Voiture immatriculée $this->immatriculation de marque $this->marque (couleur $this->couleur) </p>";
     }
+
+    public static function getVoitureByImmat($immat) {
+    // In the query, put tags :xxx instead of variables $xxx
+    $sql = "SELECT * from voiture WHERE immatriculation=:nom_tag";
+    // Prepare the SQL statement
+    $req_prep = Model::$pdo->prepare($sql);
+
+    $values = array(
+        "nom_tag" => $immat,
+        //nomdutag => valeur, ...
+    );
+    // Execute the SQL prepared statement after replacing tags 
+    // with the values given in $values
+    $req_prep->execute($values);
+
+    // Retrieve results as previously
+    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'Voiture');
+    $tab_voit = $req_prep->fetchAll();
+    // Careful: you should handle the special case of no results
+    if (empty($tab_voit))
+        return false;
+    return $tab_voit[0];
+    }
+
+    public function save(){
+        $sql = "INSERT INTO voiture (immatriculation,marque,couleur) VALUES (:immatriculation,:marque,:couleur)";
+        $req_prep = Model::$pdo->prepare($sql);
+
+        $values = array(
+        ":immatriculation" => $this->immatriculation,
+        ":marque" => $this->marque,
+        ":couleur" => $this->couleur,
+    );
+        $req_prep->execute($values);
+    }
+
 }
+
+?>
